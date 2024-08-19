@@ -1,72 +1,39 @@
-import connection from '../database/conexao.js'
+import selecaoRepository from '../repositories/selecaoRepository.js'
 
 class SelecaoController {
 
-index(req, res) {
-    const sql = "SELECT * FROM selecoes;"
-    connection.query(sql, (error, results) => {
-        if (error) {
-            console.log(error)
-            res.status(404).json({ 'erro:': error })
-        } else {
-            res.status(200).json(results);
-        }
-    })
+async index(req, res) {
+ const row = await selecaoRepository.findAll()
+ res.json(row)
 }
 
-show(req, res) {
+async show(req, res) {
     const id = req.params.id
-    const sql = "SELECT * FROM selecoes WHERE id=?;"
-    connection.query(sql, id, (error, results) => {
-        const linha = results[0]
-        if (error) {
-            console.log(error)
-            res.status(404).json({ 'erro:': error })
-        } else {
-            res.status(200).json(linha);
-        }
-    })
+    const row = await selecaoRepository.findByid(id)
+    res.json(row)
+
 }
 
 
-store(req, res){
+async store(req, res){
     const selecao = req.body
-    const sql = "INSERT INTO selecoes SET ?;"
-    connection.query(sql, selecao, (error, results) => {
-        if (error) {
-            console.log(error)
-            res.status(404).json({ 'erro:': error })
-        } else {
-            res.status(201).json(results);
-        }
-    })
+    const row = await selecaoRepository.create(selecao)
+     res.json(row)
 }
 
-update (req, res) {
-    const id = req.params.id
-    const sql = "DELETE FROM selecoes WHERE id=?;"
-    connection.query(sql, id, (error, results) => {
-        if (error) {
-            console.log(error)
-            res.status(404).json({ 'erro:': error })
-        } else {
-            res.status(200).json(results);
-        }
-    })
-}
-
-delete(req, res) {
+async update (req, res) {
     const id = req.params.id
     const selecao = req.body
-    const sql = "UPDATE selecoes SET ? WHERE id=?;"
-    connection.query(sql, [selecao, id], (error, results) => {
-        if (error) {
-            console.log(error)
-            res.status(400).json({ 'erro:': error })
-        } else {
-            res.status(200).json(results);
-        }
-    })
+    const row = await selecaoRepository.update(selecao,id)
+     res.json(row)
+
+}
+
+async delete(req, res) {
+    const id = req.params.id
+    const row = await selecaoRepository.delete(id)
+    res.json(row)
+
 }
 
 

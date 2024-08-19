@@ -12,8 +12,8 @@ app.use(express.json())
 app.get('/selecoes', selecaoController.index)
 app.get('/selecoes/:id', selecaoController.show)
 app.post('/selecoes', selecaoController.store)
-app.delete('/selecoes/:id',selecaoController.update)
-app.put('/selecoes/:id', selecaoController.delete)
+app.delete('/selecoes/:id',selecaoController.delete)
+app.put('/selecoes/:id', selecaoController.update)
 
 
 export default app
