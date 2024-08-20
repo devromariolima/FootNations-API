@@ -1,74 +1,30 @@
-import connection from '../database/conexao.js'
+import {consulta} from '../database/conexao.js'
 
 class SelecaoRepository{
     // CRUD
 create(selecao) {
     const sql = "INSERT INTO selecoes SET ?"
-    return new Promise ((resolve , reject) => {
-        connection.query(sql, selecao,(error, results) => {
-            if(error ){
-                return reject("não foi possivel cadastrar dados!")
-            }
-                const row = JSON.parse(JSON.stringify(results))
-                return resolve(row)
-        })
-    })
+    return consulta(sql, selecao, 'Não foi possivel cadastrar a seleção!')
 }
 
 findAll(){
     const sql = "SELECT * FROM selecoes;"
-    return new Promise ((resolve , reject) => {
-        connection.query(sql, (error, results) => {
-            if(error ){
-                return reject("Erro ao realizar consulta")
-            } else {
-                const row = JSON.parse(JSON.stringify(results))
-                return resolve(row)
-            }
-        })
-    })
+    return consulta(sql, 'erro ao realzar consulta!')
 }
 
 findByid(id) {
     const sql = "SELECT * FROM selecoes WHERE id=?;"
-    return new Promise ((resolve , reject) => {
-        connection.query(sql, id,(error, results) => {
-            if(error ){
-                return reject("Erro ao realizar consulta")
-            } else {
-                const row = JSON.parse(JSON.stringify(results))
-                return resolve(row)
-            }
-        })
-    })
+    return consulta(sql, id, 'erro ao realzar consulta!')
 }
 
 update(selecao, id){
     const sql = "UPDATE selecoes SET ? WHERE id=?;"
-    return new Promise ((resolve , reject) => {
-        connection.query(sql, [selecao, id],(error, results) => {
-            if(error ){
-                return reject("Erro ao atualizar dados")
-            } else {
-                const row = JSON.parse(JSON.stringify(results))
-                return resolve(row)
-            }
-        })
-    })
+    return consulta(sql, [selecao, id], 'erro ao realzar atualizar dados!')
 }
 
 delete(id){
     const sql = "DELETE FROM selecoes WHERE id=?;"
-    return new Promise ((resolve , reject) => {
-        connection.query(sql, id,(error, results) => {
-            if(error ){
-                return reject("Erro ao remover dados")
-            } else {
-                const row = JSON.parse(JSON.stringify(results))
-                return resolve(row)
-            }
-        })
-    })
+    return consulta(sql, id, 'erro ao remover dados!')
 }
 
 
