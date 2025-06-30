@@ -1,4 +1,4 @@
-# API-REST-SELECOES
+# FootNations-API
 
 ## 1. Instalação e Execução
 
