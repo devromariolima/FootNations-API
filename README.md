@@ -1,12 +1,12 @@
 # API-REST-SELECOES
 
-- 1. Instalação e Execução
+## 1. Instalação e Execução
 
 - npm install   # Instala as dependências
 - npm run dev  # Inicia o servidor (http://localhost:3000)
 
 
-- 2. Rotas Disponíveis
+## 2. Rotas Disponíveis
 
 - Método	Rota	Descrição
 
