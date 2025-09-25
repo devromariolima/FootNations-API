@@ -19,3 +19,6 @@
 - PUT	/selecoes/:id	Atualiza uma seleção existente
 
 - DELETE	/selecoes/:id	Remove uma seleção
+
+
+<img src="https://i.imgur.com/OOKmYRJ.png" alt="Desktop Screenshot" width="600"/>
